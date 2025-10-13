@@ -130,6 +130,8 @@ test('list by measure', () => {
 test('unsupported measure should throw', () => {
   const convert = configureMeasurements({});
   expect(() => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
     convert().list('BadMeasure');
   }).toThrow();
 });

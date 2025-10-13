@@ -1,135 +1,58 @@
 import { Measure, Unit } from './../index.js';
-export type EnergyUnits = EnergySIUnits | EnergyNutritionUnits;
-export type EnergySystems = 'SI' | 'nutrition';
+export type EnergyUnits = EnergyMetricUnits | EnergyImperialUnits;
+export type EnergySystems = 'metric' | 'imperial';
 
-export type EnergySIUnits =
-  | 'Ws'
-  | 'Wm'
-  | 'Wh'
-  | 'mWh'
-  | 'kWh'
-  | 'MWh'
-  | 'GWh'
-  | 'J'
-  | 'kJ'
-  | 'MJ'
-  | 'GJ';
+export type EnergyMetricUnits = 'kWh';
+export type EnergyImperialUnits = 'MMBtu' | 'Therms' | 'Ton-hours';
 
-export type EnergyNutritionUnits = 'kcal' | 'cal';
-
-const SI: Record<EnergySIUnits, Unit> = {
-  Ws: {
-    name: {
-      singular: 'Watt-second',
-      plural: 'Watt-seconds',
-    },
-    to_anchor: 1,
-  },
-  Wm: {
-    name: {
-      singular: 'Watt-minute',
-      plural: 'Watt-minutes',
-    },
-    to_anchor: 60,
-  },
-  Wh: {
-    name: {
-      singular: 'Watt-hour',
-      plural: 'Watt-hours',
-    },
-    to_anchor: 3600,
-  },
-  mWh: {
-    name: {
-      singular: 'Milliwatt-hour',
-      plural: 'Milliwatt-hours',
-    },
-    to_anchor: 3.6,
-  },
+const metric: Record<EnergyMetricUnits, Unit> = {
   kWh: {
     name: {
       singular: 'Kilowatt-hour',
       plural: 'Kilowatt-hours',
     },
-    to_anchor: 3.6e6,
-  },
-  MWh: {
-    name: {
-      singular: 'Megawatt-hour',
-      plural: 'Megawatt-hours',
-    },
-    to_anchor: 3.6e9,
-  },
-  GWh: {
-    name: {
-      singular: 'Gigawatt-hour',
-      plural: 'Gigawatt-hours',
-    },
-    to_anchor: 3.6e12,
-  },
-  J: {
-    name: {
-      singular: 'Joule',
-      plural: 'Joules',
-    },
     to_anchor: 1,
-  },
-  kJ: {
-    name: {
-      singular: 'Kilojoule',
-      plural: 'Kilojoules',
-    },
-    to_anchor: 1000,
-  },
-  MJ: {
-    name: {
-      singular: 'Megajoule',
-      plural: 'Megajoules',
-    },
-    to_anchor: 1e6,
-  },
-  GJ: {
-    name: {
-      singular: 'Gigajoule',
-      plural: 'Gigajoules',
-    },
-    to_anchor: 1e9,
   },
 };
 
-const nutrition: Record<EnergyNutritionUnits, Unit> = {
-  cal: {
+const imperial: Record<EnergyImperialUnits, Unit> = {
+  MMBtu: {
     name: {
-      singular: 'calorie',
-      plural: 'calories',
+      singular: 'Million British thermal unit',
+      plural: 'Million British thermal units',
     },
     to_anchor: 1,
   },
-  kcal: {
+  Therms: {
     name: {
-      singular: 'Kilocalorie',
-      plural: 'Kilocalories',
+      singular: 'Therm',
+      plural: 'Therms',
     },
-    to_anchor: 1000,
+    to_anchor: 0.1,
+  },
+  'Ton-hours': {
+    name: {
+      singular: 'Ton-hour',
+      plural: 'Ton-hours',
+    },
+    to_anchor: 0.012,
   },
 };
+
 const measure: Measure<EnergySystems, EnergyUnits> = {
   systems: {
-    SI,
-    nutrition,
+    metric,
+    imperial,
   },
   anchors: {
-    SI: {
-      nutrition: {
-        ratio: {
-          numerator: 1,
-          denominator: 4.184,
-        },
+    metric: {
+      imperial: {
+        ratio: 0.003412,
       },
     },
-    nutrition: {
-      SI: {
-        ratio: 4.184,
+    imperial: {
+      metric: {
+        ratio: 293.08,
       },
     },
   },
