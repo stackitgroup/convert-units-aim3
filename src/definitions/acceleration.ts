@@ -10,7 +10,7 @@ const metric: Record<AccelerationMetricUnits, Unit> = {
       singular: 'g-force',
       plural: 'g-forces',
     },
-    to_anchor: 9.80665,
+    to_anchor: 9.806651,
   },
   'm/s2': {
     name: {
