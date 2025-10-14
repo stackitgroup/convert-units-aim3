@@ -19,6 +19,10 @@ import powerDensity, {
   PowerDensityUnits,
 } from './powerDensity.js';
 import pressure, { PressureSystems, PressureUnits } from './pressure.js';
+import specificPowerConsumption, {
+  SpecificPowerConsumptionSystems,
+  SpecificPowerConsumptionUnits,
+} from './specificPowerConsumption.js';
 import speed, { SpeedSystems, SpeedUnits } from './speed.js';
 import ventilationRate, {
   VentilationRateSystems,
@@ -37,6 +41,7 @@ export type AllMeasuresSystems =
   | EnergySystems
   | LengthSystems
   | OneOverEnergySystems
+  | SpecificPowerConsumptionSystems
   | PowerDensitySystems
   | PressureSystems
   | SpeedSystems
@@ -50,6 +55,7 @@ export type AllMeasuresUnits =
   | EnergyUnits
   | LengthUnits
   | OneOverEnergyUnits
+  | SpecificPowerConsumptionUnits
   | PowerDensityUnits
   | PressureUnits
   | SpeedUnits
@@ -63,6 +69,7 @@ export type AllMeasures =
   | 'energy'
   | 'length'
   | 'oneOverEnergy'
+  | 'specificPowerConsumption'
   | 'powerDensity'
   | 'pressure'
   | 'speed'
@@ -76,6 +83,7 @@ const allMeasures: Record<
   ventilationRate,
   energyConsumptionPerArea,
   heatingCoolingDegreeDays,
+  specificPowerConsumption,
   energy,
   length,
   oneOverEnergy,

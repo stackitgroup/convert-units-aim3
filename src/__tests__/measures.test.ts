@@ -20,6 +20,7 @@ test('measures', () => {
       'energy',
       'length',
       'oneOverEnergy',
+      'specificPowerConsumption',
       'powerDensity',
       'pressure',
       'speed',
