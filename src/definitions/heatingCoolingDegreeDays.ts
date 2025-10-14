@@ -39,12 +39,12 @@ const measure: Measure<
   anchors: {
     metric: {
       imperial: {
-        transform: (degC: number) => 1.8 * degC + 32,
+        transform: <T>(degC: T) => (1.8 * (degC as number) + 32) as T,
       },
     },
     imperial: {
       metric: {
-        transform: (degF: number) => (degF - 32) / 1.8,
+        transform: <T>(degF: T) => (((degF as number) - 32) / 1.8) as T,
       },
     },
   },

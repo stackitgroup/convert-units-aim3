@@ -1,7 +1,5 @@
-convert-units
+convert-units-aim3
 =============
-
-[![Downloads](https://img.shields.io/npm/dm/convert-units.svg)](https://www.npmjs.com/package/convert-units)
 
 A handy utility for converting between quantities in different units.
 
@@ -9,18 +7,13 @@ Installation
 -----
 
 ```bash
-npm install convert-units --save
-```
-
-```bash
-# beta builds are also available with
-npm install convert-units@beta --save
+npm install convert-units-aim3 --save
 ```
 
 Usage
 -----
 
-`convert-units` has a simple chained API that is easy to read. It can also be configured with the measures that are packaged with it or custom measures.
+`convert-units-aim3` has a simple chained API that is easy to read. It can also be configured with the measures that are packaged with it or custom measures.
 
 The code snippet below shows everything needed to get going:
 
@@ -69,46 +62,6 @@ Attempting to convert between measures will result in an error:
 ```js
 convert(1).from('oz').to('fl-oz');
 // throws -- you can't go from mass to volume!
-```
-
-To convert a unit to another unit within the same measure with the smallest value above `1`:
-
-```js
-convert(12000).from('mm').toBest();
-// { val: 12, unit: 'm', ... }
-```
-
-> Note: The `toBest` method is *subjective* and **does not work for all measures**.
-
-If a *better* value is not found, then from unit is returned. This is also the case for zero:
-
-```js
-convert(1).from('mm').toBest();
-// { val: 1, unit: 'mm', ... }
-
-convert(0).from('mm').toBest();
-// { val: 0, unit: 'mm', ... }
-```
-
-Exclude units to get different results:
-
-```js
-convert(12000).from('mm').toBest({ exclude: ['m'] });
-// { val: 1200, unit: 'cm', ... } (the smallest unit excluding meters)
-```
-
-The best is always the smallest number above `1`. If the value is a negative number, the best is always the largest number below `-1`. The cut off number of either `1` or `-1` can be changed to get different results:
-
-```js
-convert(900).from('mm').toBest({ cutOffNumber: 10 });
-// { val: 90, unit: 'cm', ... } (the smallest unit with a value equal to or above 10)
-
-convert(1000).from('mm').toBest({ cutOffNumber: 10 });
-// { val: 100, unit: 'cm', plural: 'Centimeters' } (the smallest unit with a value equal to or above 10)
-
-// by default the system of the origin is used, the `system` option overwrites this behaviour
-convert(254).from('mm').toBest({ system: 'imperial' }); // ('mm' is metric)
-// { val: 10, unit: 'in', plural: 'Inches' }            // ('in' is imperial)
 ```
 
 List all available measures:
@@ -780,37 +733,6 @@ convert(4).from('cm').to('px');
 ```
 </details>
 
-Migrating from v2 to v3+
------------------------
-
-This only applies if moving from `<=2.3.4` to `>=3.x`.
- 
-`index.js`
-```js
-import convert from 'convert-units';
-
-convert(1).from('m').to('mm');
-convert(1).from('m').to('ft');
-```
-
-The code above could be changed to match the following:
-
-`index.js`
-```js
-import convert from './convert';  // defined below
-
-convert(1).from('m').to('mm');
-convert(1).from('m').to('ft');
-```
-
-`convert.js`
-```js
-import configureMeasurements from 'convert-units';
-import allMeasures from 'convert-units/definitions/all';  
-
-export default configureMeasurements(allMeasures);
-```
-
 Typescript
 ----------
 
@@ -897,345 +819,82 @@ convertAll(4).from('m2').to('cm2');
 // 400000
 ```
 
-Request Measures & Units
------------------------
-
-All new measures and additional units are welcome! Take a look at [`src/definitions`](https://github.com/convert-units/convert-units/tree/main/src/definitions) to see some examples.
-
 Packaged Units
 --------------
 <details>
 <summary>Length</summary>
-* nm
-* μm
-* mm
-* cm
 * m
-* km
-* in
-* yd
-* ft-us
 * ft
-* fathom
-* mi
-* nMi
 </details>
 
 <details>
 <summary>Area</summary>
-* mm2
-* cm2
 * m2
-* ha
-* km2
-* in2
 * ft2
-* ac
-* mi2
-</details>
-
-<details>
-<summary>Mass</summary>
-* mcg
-* mg
-* g
-* kg
-* oz
-* lb
-* mt
-* st
-* t
-</details>
-
-<details>
-<summary>Volume</summary>
-* mm3
-* cm3
-* ml
-* l
-* kl
-* Ml
-* Gl
-* m3
-* km3
-* tsp
-* Tbs
-* in3
-* fl-oz
-* cup
-* pnt
-* qt
-* gal
-* ft3
-* yd3
-</details>
-
-<details>
-<summary>Volume Flow Rate</summary>
-* mm3/s
-* cm3/s
-* ml/s
-* cl/s
-* dl/s
-* l/s
-* l/min
-* l/h
-* kl/s
-* kl/min
-* kl/h
-* m3/s
-* m3/min
-* m3/h
-* km3/s
-* tsp/s
-* Tbs/s
-* in3/s
-* in3/min
-* in3/h
-* fl-oz/s
-* fl-oz/min
-* fl-oz/h
-* cup/s
-* pnt/s
-* pnt/min
-* pnt/h
-* qt/s
-* gal/s
-* gal/min
-* gal/h
-* ft3/s
-* ft3/min
-* ft3/h
-* yd3/s
-* yd3/min
-* yd3/h'
-</details>
-
-<details>
-<summary>Temperature</summary>
-* C
-* F
-* K
-* R
-</details>
-
-<details>
-<summary>Time</summary>
-* ns
-* mu
-* ms
-* s
-* min
-* h
-* d
-* week
-* month
-* year
-</details>
-
-<details>
-<summary>Frequency</summary>
-* Hz
-* mHz
-* kHz
-* MHz
-* GHz
-* THz
-* rpm
-* deg/s
-* rad/s
 </details>
 
 <details>
 <summary>Speed</summary>
 * m/s
-* km/h
-* mph
-* knot
-* ft/s
-* in/h
-* mm/h
+* ft/m
 </details>
 
 <details>
-<summary>Torque</summary>
-* Nm
-* lbf-ft
+<summary>Heating Cooling Degree Days</summary>
+* degF-days
+* degC-days
 </details>
 
-
+<details>
+<summary>Energy Consumption per Area</summary>
+* kBtu/ft2
+* kWh/ft2
+* kWh/m2
+</details>
 
 <details>
-<summary>Pace</summary>
-* s/m
-* min/km
-* s/ft
-* min/mi
+<summary>One Over Energy</summary>
+* 1/kWh
+* 1/ton-hr
+* 1/MMBtu
+* 1/Therms
+* 1/m3
+* 1/ccf
+* 1/GJ
+* 1/tonne
+* 1/klb
 </details>
 
 <details>
 <summary>Pressure</summary>
+* in. w.c
 * Pa
-* hPa
-* kPa
-* MPa
-* bar
-* torr
-* mH2O
-* mmHg
-* psi
-* ksi
 </details>
 
 <details>
-<summary>Digital</summary>
-* bit
-* byte
-* kb
-* Mb
-* Gb
-* Tb
-* kB
-* MB
-* GB
-* TB
-* KiB
-* MiB
-* GiB
-* TiB
+<summary>Specific Power Consumption</summary>
+* hp/1000cfm
+* kW/(1000L/s)
 </details>
 
 <details>
-<summary>Illuminance</summary>
-* lx
-* ft-cd
+<summary>Volumetric Flow Rate</summary>
+* cfm
+* L/s
 </details>
 
 <details>
-<summary>Parts-Per</summary>
-* ppm
-* ppb
-* ppt
-* ppq
-</details>
-
-<details>
-<summary>Voltage</summary>
-* V
-* mV
-* kV
-</details>
-
-<details>
-<summary>Current</summary>
-* A
-* mA
-* kA
-</details>
-
-<details>
-<summary>Power</summary>
-* W
-* mW
-* kW
-* MW
-* GW
-* PS
-* Btu/s
-* ft-lb/s
-* hp
-</details>
-
-<details>
-<summary>Apparent Power</summary>
-* VA
-* mVA
-* kVA
-* MVA
-* GVA
-</details>
-
-<details>
-<summary>Reactive Power</summary>
-* VAR
-* mVAR
-* kVAR
-* MVAR
-* GVAR
+<summary>Power Density</summary>
+* W/ft2
+* W/m2
 </details>
 
 <details>
 <summary>Energy</summary>
-* Ws
-* Wm
-* Wh
-* mWh
 * kWh
-* MWh
-* GWh
-* J
-* kJ
-* MJ
-* GJ
-</details>
-
-<details>
-<summary>Reactive Energy</summary>
-* VARh
-* mVARh
-* kVARh
-* MVARh
-* GVARh
-</details>
-
-<details>
-<summary>Angle</summary>
-* deg
-* rad
-* grad
-* arcmin
-* arcsec
-</details>
-
-<details>
-<summary>Charge</summary>
-* c
-* mC
-* μC
-* nC
-* pC
-</details>
-
-<details>
-<summary>Force</summary>
-* N
-* kN
-* lbf
-* kgf
-</details>
-
-<details>
-<summary>Acceleration</summary>
-* g (g-force)
-* m/s2
-* g0 (Standard Gravity)
-</details>
-
-<details>
-<summary>Pieces</summary>
-* pcs
-* bk-doz
-* cp
-* doz-doz
-* doz
-* gr-gr
-* gros 
-* half-dozen
-* long-hundred
-* ream
-* scores
-* sm-gr
-* trio
+* ton-hr
+* MMBtu
+* Therms
 </details>
 
 
