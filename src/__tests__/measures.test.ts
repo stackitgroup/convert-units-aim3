@@ -14,12 +14,12 @@ test('measures', () => {
   const actual = convert().measures(),
     expected = [
       'area',
-      'currency',
       'energyConsumptionPerArea',
       'heatingCoolingDegreeDays',
       'ventilationRate',
       'energy',
       'length',
+      'oneOverEnergy',
       'powerDensity',
       'pressure',
       'speed',

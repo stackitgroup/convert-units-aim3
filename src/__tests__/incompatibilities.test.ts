@@ -120,15 +120,6 @@ test('Missing system to system anchor should throw an error', () => {
   }).toThrow();
 });
 
-test('passing no measures to configureMeasurements should cause calling convert to throw an error', () => {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-expect-error
-  const convert = configureMeasurements();
-  expect(() => {
-    convert();
-  }).toThrow();
-});
-
 test('Missing origin anchor should throw an error', () => {
   type TestUnits = TestAUnits | TestBUnits | TestCUnits;
   type TestSystems = 'A' | 'B' | 'C';

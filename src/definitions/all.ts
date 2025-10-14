@@ -10,6 +10,10 @@ import heatingCoolingDegreeDays, {
   HeatingCoolingDegreeDaysUnits,
 } from './heatingCoolingDegreeDays.js';
 import length, { LengthSystems, LengthUnits } from './length.js';
+import oneOverEnergy, {
+  OneOverEnergySystems,
+  OneOverEnergyUnits,
+} from './oneOverEnergy.js';
 import powerDensity, {
   PowerDensitySystems,
   PowerDensityUnits,
@@ -32,6 +36,7 @@ export type AllMeasuresSystems =
   | HeatingCoolingDegreeDaysSystems
   | EnergySystems
   | LengthSystems
+  | OneOverEnergySystems
   | PowerDensitySystems
   | PressureSystems
   | SpeedSystems
@@ -44,6 +49,7 @@ export type AllMeasuresUnits =
   | HeatingCoolingDegreeDaysUnits
   | EnergyUnits
   | LengthUnits
+  | OneOverEnergyUnits
   | PowerDensityUnits
   | PressureUnits
   | SpeedUnits
@@ -56,6 +62,7 @@ export type AllMeasures =
   | 'heatingCoolingDegreeDays'
   | 'energy'
   | 'length'
+  | 'oneOverEnergy'
   | 'powerDensity'
   | 'pressure'
   | 'speed'
@@ -71,6 +78,7 @@ const allMeasures: Record<
   heatingCoolingDegreeDays,
   energy,
   length,
+  oneOverEnergy,
   powerDensity,
   pressure,
   speed,
