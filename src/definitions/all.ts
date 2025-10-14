@@ -1,10 +1,5 @@
 import { Measure } from '../convert.js';
 import area, { AreaSystems, AreaUnits } from './area.js';
-import currency, { CurrencySystems, CurrencyUnits } from './currency.js';
-import currencyPerEnergy, {
-  CurrencyPerEnergySystems,
-  CurrencyPerEnergyUnits,
-} from './oneOverEnergy.js';
 import energy, { EnergySystems, EnergyUnits } from './energy.js';
 import energyConsumptionPerArea, {
   EnergyConsumptionPerAreaSystems,
@@ -35,13 +30,11 @@ export type AllMeasuresSystems =
   | VentilationRateSystems
   | EnergyConsumptionPerAreaSystems
   | HeatingCoolingDegreeDaysSystems
-  | CurrencySystems
   | EnergySystems
   | LengthSystems
   | PowerDensitySystems
   | PressureSystems
   | SpeedSystems
-  | CurrencyPerEnergySystems
   | VolumeFlowRateSystems;
 
 export type AllMeasuresUnits =
@@ -49,13 +42,11 @@ export type AllMeasuresUnits =
   | VentilationRateUnits
   | EnergyConsumptionPerAreaUnits
   | HeatingCoolingDegreeDaysUnits
-  | CurrencyUnits
   | EnergyUnits
   | LengthUnits
   | PowerDensityUnits
   | PressureUnits
   | SpeedUnits
-  | CurrencyPerEnergyUnits
   | VolumeFlowRateUnits;
 
 export type AllMeasures =
@@ -65,7 +56,6 @@ export type AllMeasures =
   | 'heatingCoolingDegreeDays'
   | 'energy'
   | 'length'
-  | 'currency'
   | 'powerDensity'
   | 'pressure'
   | 'speed'
@@ -80,7 +70,6 @@ const allMeasures: Record<
   energyConsumptionPerArea,
   heatingCoolingDegreeDays,
   energy,
-  currency,
   length,
   powerDensity,
   pressure,

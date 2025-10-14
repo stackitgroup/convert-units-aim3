@@ -13,228 +13,283 @@ describe('OneOverEnergy conversions', () => {
     oneOverEnergy,
   });
 
-  // test('1/kWh to 1/ton-hr conversion', () => {
-  //   const result = convert(1).from('1/kWh').to('1/ton-hr');
-  //   expect(result).toBeCloseTo(0.28433, 4);
-  // });
+  describe('metric -> to anchor', () => {
+    test('5 1/m3 to 1/kWh', () => {
+      const result = convert(5).from('1/m3').to('1/kWh');
+      expect(result).toBeCloseTo(0.48308802);
+    });
 
-  // test('1/kWh to 1/MMBtu conversion', () => {
-  //   const result = convert(1).from('1/kWh').to('1/MMBtu');
-  //   expect(result).toBeCloseTo(0.003412, 5);
-  // });
+    test('48 1/m3 to 1/kWh', () => {
+      const result = convert(48).from('1/m3').to('1/kWh');
+      expect(result).toBeCloseTo(4.637644992);
+    });
 
-  // test('1/kWh to 1/therm conversion', () => {
-  //   const result = convert(1).from('1/kWh').to('1/therm');
-  //   expect(result).toBeCloseTo(0.03412, 4);
-  // });
+    test('7 1/kWh to 1/m3', () => {
+      const result = convert(7).from('1/kWh').to('1/m3');
+      expect(result).toBeCloseTo(72.44976516);
+    });
 
-  // test('1/ton-hr to 1/kWh conversion', () => {
-  //   const result = convert(1).from('1/ton-hr').to('1/kWh');
-  //   expect(result).toBeCloseTo(3.517, 3);
-  // });
+    test('23 1/kWh to 1/m3', () => {
+      const result = convert(23).from('1/kWh').to('1/m3');
+      expect(result).toBeCloseTo(238.0492284);
+    });
 
-  // test('1/MMBtu to 1/kWh conversion', () => {
-  //   const result = convert(1).from('1/MMBtu').to('1/kWh');
-  //   expect(result).toBeCloseTo(293.08, 2);
-  // });
+    test('5 1/GJ to 1/kWh', () => {
+      const result = convert(5).from('1/GJ').to('1/kWh');
+      expect(result).toBeCloseTo(0.018000006);
+    });
 
-  // test('1/therm to 1/kWh conversion', () => {
-  //   const result = convert(1).from('1/therm').to('1/kWh');
-  //   expect(result).toBeCloseTo(29.308, 3);
-  // });
+    test('48 1/GJ to 1/kWh', () => {
+      const result = convert(48).from('1/GJ').to('1/kWh');
+      expect(result).toBeCloseTo(0.1728000576);
+    });
 
-  // test('1/ton-hr to 1/MMBtu conversion', () => {
-  //   const result = convert(1).from('1/ton-hr').to('1/MMBtu');
-  //   expect(result).toBeCloseTo(0.012, 4);
-  // });
+    test('7 1/kWh to 1/GJ', () => {
+      const result = convert(7).from('1/kWh').to('1/GJ');
+      expect(result).toBeCloseTo(1944.4437);
+    });
 
-  // test('1/MMBtu to 1/ton-hr conversion', () => {
-  //   const result = convert(1).from('1/MMBtu').to('1/ton-hr');
-  //   expect(result).toBeCloseTo(83.333, 2);
-  // });
+    test('23 1/kWh to 1/GJ', () => {
+      const result = convert(23).from('1/kWh').to('1/GJ');
+      expect(result).toBeCloseTo(6388.8867);
+    });
 
-  // test('1/therm to 1/MMBtu conversion', () => {
-  //   const result = convert(1).from('1/therm').to('1/MMBtu');
-  //   expect(result).toBeCloseTo(0.1, 3);
-  // });
+    test('5 1/tonne to 1/kWh', () => {
+      const result = convert(5).from('1/tonne').to('1/kWh');
+      expect(result).toBeCloseTo(0.0077382);
+    });
 
-  // test('1/MMBtu to 1/therm conversion', () => {
-  //   const result = convert(1).from('1/MMBtu').to('1/therm');
-  //   expect(result).toBeCloseTo(10, 1);
-  // });
+    test('48 1/tonne to 1/kWh', () => {
+      const result = convert(48).from('1/tonne').to('1/kWh');
+      expect(result).toBeCloseTo(0.0742871);
+    });
 
-  // test('1/ccf to 1/therm conversion', () => {
-  //   const result = convert(1).from('1/ccf').to('1/therm');
-  //   expect(result).toBeCloseTo(1, 3);
-  // });
+    test('7 1/kWh to 1/tonne', () => {
+      const result = convert(7).from('1/kWh').to('1/tonne');
+      expect(result).toBeCloseTo(4522.989152);
+    });
 
-  // test('1/therm to 1/ccf conversion', () => {
-  //   const result = convert(1).from('1/therm').to('1/ccf');
-  //   expect(result).toBeCloseTo(1, 3);
-  // });
+    test('23 1/kWh to 1/tonne', () => {
+      const result = convert(23).from('1/kWh').to('1/tonne');
+      expect(result).toBeCloseTo(14861.25);
+    });
+  });
 
-  // test('1/MMBtu to 1/klb conversion', () => {
-  //   const result = convert(1).from('1/MMBtu').to('1/klb');
-  //   expect(result).toBeCloseTo(1, 3);
-  // });
+  describe('metric: intra-system conversions', () => {
+    test('25 1/m3 to 1/GJ', () => {
+      const result = convert(25).from('1/m3').to('1/GJ');
 
-  // test('1/klb to 1/MMBtu conversion', () => {
-  //   const result = convert(1).from('1/klb').to('1/MMBtu');
-  //   expect(result).toBeCloseTo(1, 3);
-  // });
+      const expected = (25 * 2.8317) / 0.10551; // 670.95
+      expect(result).toBeCloseTo(expected, 4);
+    });
 
-  // test('1/m3 to 1/kWh conversion', () => {
-  //   const result = convert(1).from('1/m3').to('1/kWh');
-  //   // 1/therm = 2.8317 * 1/m3 and 1/therm = 29.308 * 1/kWh
-  //   // So 1/m3 = (1/2.8317) * 1/therm = (1/2.8317) * 29.308 * 1/kWh
-  //   const expected = 29.308 / 2.8317;
-  //   expect(result).toBeCloseTo(expected, 2);
-  // });
+    test('25 1/m3 to 1/tonne', () => {
+      const result = convert(25).from('1/m3').to('1/tonne');
 
-  // test('1/GJ to 1/kWh conversion', () => {
-  //   const result = convert(1).from('1/GJ').to('1/kWh');
-  //   // 1/MMBtu = 1.0551 * 1/GJ and 1/MMBtu = 293.08 * 1/kWh
-  //   // So 1/GJ = (1/1.0551) * 1/MMBtu = (1/1.0551) * 293.08 * 1/kWh
-  //   const expected = 293.08 / 1.0551;
-  //   expect(result).toBeCloseTo(expected, 1);
-  // });
+      const expected = (25 * 2.8317) / 0.1 / 0.45359; // 1560.715624
+      expect(result).toBeCloseTo(expected, 4);
+    });
 
-  // test('1/tonne to 1/kWh conversion', () => {
-  //   const result = convert(1).from('1/tonne').to('1/kWh');
-  //   // 1/MMBtu = 0.45359 * 1/tonne and 1/MMBtu = 293.08 * 1/kWh
-  //   // So 1/tonne = (1/0.45359) * 1/MMBtu = (1/0.45359) * 293.08 * 1/kWh
-  //   const expected = 293.08 / 0.45359;
-  //   expect(result).toBeCloseTo(expected, 1);
-  // });
+    test('25 1/tonne to 1/m3 conversion', () => {
+      const result = convert(25).from('1/tonne').to('1/m3');
 
-  // test('1/m3 to 1/ccf conversion', () => {
-  //   const result = convert(1).from('1/m3').to('1/ccf');
-  //   // 1/therm = 2.8317 * 1/m3 and 1/therm = 1 * 1/ccf
-  //   // So 1/m3 = (1/2.8317) * 1/therm = (1/2.8317) * 1/ccf
-  //   const expected = 1 / 2.8317;
-  //   expect(result).toBeCloseTo(expected, 3);
-  // });
+      const expected = (25 * 0.45359 * 0.1) / 2.8317; // 0.40045
+      expect(result).toBeCloseTo(expected, 4);
+    });
 
-  // test('1/GJ to 1/MMBtu conversion', () => {
-  //   const result = convert(1).from('1/GJ').to('1/MMBtu');
-  //   expect(result).toBeCloseTo(0.9478, 3);
-  // });
+    test('25 1/GJ to 1/tonne conversion', () => {
+      const result = convert(25).from('1/GJ').to('1/tonne');
 
-  // test('1/tonne to 1/klb conversion', () => {
-  //   const result = convert(1).from('1/tonne').to('1/klb');
-  //   expect(result).toBeCloseTo(2.2046, 3);
-  // });
+      const expected = (25 * 0.10551) / 0.1 / 0.45359; // 58.1527
+      expect(result).toBeCloseTo(expected, 4);
+    });
+  });
 
-  // test('Large scale 1/kWh to 1/MMBtu conversion', () => {
-  //   const result = convert(1000).from('1/kWh').to('1/MMBtu');
-  //   expect(result).toBeCloseTo(3.412, 2);
-  // });
+  describe('imperial -> to anchor', () => {
+    test('5 1/ton-hr to 1/MMBtu', () => {
+      const result = convert(5).from('1/ton-hr').to('1/MMBtu');
+      expect(result).toBeCloseTo(416.657182);
+    });
 
-  // test('Large scale 1/MMBtu to 1/kWh conversion', () => {
-  //   const result = convert(50).from('1/MMBtu').to('1/kWh');
-  //   expect(result).toBeCloseTo(14654, 0);
-  // });
+    test('48 1/ton-hr to 1/MMBtu', () => {
+      const result = convert(48).from('1/ton-hr').to('1/MMBtu');
+      expect(result).toBeCloseTo(3999.908947);
+    });
 
-  // test('Industrial scale 1/ton-hr to 1/therm conversion', () => {
-  //   const result = convert(100).from('1/ton-hr').to('1/therm');
-  //   expect(result).toBeCloseTo(12, 1);
-  // });
+    test('7 1/MMBtu to 1/ton-hr', () => {
+      const result = convert(7).from('1/MMBtu').to('1/ton-hr');
+      expect(result).toBeCloseTo(0.084000028);
+    });
 
-  // test('Commercial scale 1/therm to 1/ccf conversion', () => {
-  //   const result = convert(250).from('1/therm').to('1/ccf');
-  //   expect(result).toBeCloseTo(250, 1);
-  // });
+    test('23 1/MMBtu to 1/ton-hr', () => {
+      const result = convert(23).from('1/MMBtu').to('1/ton-hr');
+      expect(result).toBeCloseTo(0.276000092);
+    });
 
-  // test('Utility scale 1/GJ to 1/MMBtu conversion', () => {
-  //   const result = convert(500).from('1/GJ').to('1/MMBtu');
-  //   expect(result).toBeCloseTo(473.9, 1);
-  // });
+    test('5 1/therm to 1/MMBtu', () => {
+      const result = convert(5).from('1/therm').to('1/MMBtu');
+      expect(result).toBeCloseTo(50);
+    });
 
-  // test('Large residential 1/m3 to 1/kWh conversion', () => {
-  //   const result = convert(1500).from('1/m3').to('1/kWh');
-  //   const expected = 1500 * (29.308 / 2.8317);
-  //   expect(result).toBeCloseTo(expected, 0);
-  // });
+    test('48 1/therm to 1/MMBtu', () => {
+      const result = convert(48).from('1/therm').to('1/MMBtu');
+      expect(result).toBeCloseTo(480);
+    });
 
-  // test('Industrial mass 1/tonne to 1/kWh conversion', () => {
-  //   const result = convert(75).from('1/tonne').to('1/kWh');
-  //   const expected = 75 * (293.08 / 0.45359);
-  //   expect(result).toBeCloseTo(expected, -1);
-  // });
+    test('7 1/MMBtu to 1/therm', () => {
+      const result = convert(7).from('1/MMBtu').to('1/therm');
+      expect(result).toBeCloseTo(0.7);
+    });
 
-  // test('Power plant scale 1/klb to 1/ton-hr conversion', () => {
-  //   const result = convert(2000).from('1/klb').to('1/ton-hr');
-  //   expect(result).toBeCloseTo(166666.67, -2);
-  // });
+    test('23 1/MMBtu to 1/therm', () => {
+      const result = convert(23).from('1/MMBtu').to('1/therm');
+      expect(result).toBeCloseTo(2.3);
+    });
 
-  // test('Decimal precision 1/kWh to 1/therm conversion', () => {
-  //   const result = convert(0.5).from('1/kWh').to('1/therm');
-  //   expect(result).toBeCloseTo(0.01706, 4);
-  // });
+    test('5 1/ccf to 1/MMBtu', () => {
+      const result = convert(5).from('1/ccf').to('1/MMBtu');
+      expect(result).toBeCloseTo(50);
+    });
 
-  // test('Small fractions 1/MMBtu to 1/GJ conversion', () => {
-  //   const result = convert(0.1).from('1/MMBtu').to('1/GJ');
-  //   expect(result).toBeCloseTo(0.10551, 4);
-  // });
+    test('48 1/ccf to 1/MMBtu', () => {
+      const result = convert(48).from('1/ccf').to('1/MMBtu');
+      expect(result).toBeCloseTo(480);
+    });
 
-  // test('Mixed scale cross-system 1/m3 to 1/ccf conversion', () => {
-  //   const result = convert(850).from('1/m3').to('1/ccf');
-  //   const expected = 850 * (1 / 2.8317);
-  //   expect(result).toBeCloseTo(expected, 1);
-  // });
+    test('7 1/MMBtu to 1/ccf', () => {
+      const result = convert(7).from('1/MMBtu').to('1/ccf');
+      expect(result).toBeCloseTo(0.7);
+    });
 
-  // test('Energy trading scale 1/ton-hr to 1/kWh conversion', () => {
-  //   const result = convert(25).from('1/ton-hr').to('1/kWh');
-  //   expect(result).toBeCloseTo(87.925, 2);
-  // });
+    test('23 1/MMBtu to 1/ccf', () => {
+      const result = convert(23).from('1/MMBtu').to('1/ccf');
+      expect(result).toBeCloseTo(2.3);
+    });
 
-  // test('Large commercial 1/tonne to 1/MMBtu conversion', () => {
-  //   const result = convert(150).from('1/tonne').to('1/MMBtu');
-  //   const toKwh = 150 * (293.08 / 0.45359);
-  //   const toMMBtu = toKwh * 0.003412;
-  //   expect(result).toBeCloseTo(toMMBtu, 0);
-  // });
+    test('5 1/klb to 1/MMBtu', () => {
+      const result = convert(5).from('1/klb').to('1/MMBtu');
+      expect(result).toBeCloseTo(5);
+    });
 
-  // test('Precision test with very small numbers', () => {
-  //   const result = convert(0.001).from('1/kWh').to('1/ton-hr');
-  //   expect(result).toBeCloseTo(0.00028433, 6);
-  // });
+    test('48 1/klb to 1/MMBtu', () => {
+      const result = convert(48).from('1/klb').to('1/MMBtu');
+      expect(result).toBeCloseTo(48);
+    });
 
-  // test('High precision large scale conversion', () => {
-  //   const result = convert(10000).from('1/therm').to('1/kWh');
-  //   expect(result).toBeCloseTo(293080, -1);
-  // });
+    test('7 1/MMBtu to 1/klb', () => {
+      const result = convert(7).from('1/MMBtu').to('1/klb');
+      expect(result).toBeCloseTo(7);
+    });
 
-  // test('20 1/GJ to 1/ccf', () => {
-  //   const result = convert(20).from('1/GJ').to('1/ccf');
+    test('23 1/MMBtu to 1/klb', () => {
+      const result = convert(23).from('1/MMBtu').to('1/klb');
+      expect(result).toBeCloseTo(23);
+    });
+  });
 
-  // 20 1/gj to 1/therm = 20 * 0.10551 = 2.1102 1/therm
-  // 2.1102 1/therm to 1/ccf = 2.1102 * 1 = 2.1102 1/ccf
+  describe('intra-system conversions', () => {
+    test('25 1/ton-hr to 1/therm', () => {
+      const result = convert(25).from('1/ton-hr').to('1/therm');
+      expect(result).toBeCloseTo(208.328591);
+    });
 
-  //   expect(result).toBeCloseTo(2.1102, 3);
-  // });
+    test('25 1/ton-hr to 1/ccf', () => {
+      const result = convert(25).from('1/ton-hr').to('1/ccf');
+      expect(result).toBeCloseTo(208.328591);
+    });
 
-  // test('20 1/GJ to 1/therm', () => {
-  //   const result = convert(20).from('1/GJ').to('1/therm');
+    test('25 1/ton-hr to 1/klb', () => {
+      const result = convert(25).from('1/ton-hr').to('1/klb');
+      expect(result).toBeCloseTo(2083.28591);
+    });
 
-  //   expect(result).toBeCloseTo(2.1102, 3);
-  // });
+    test('25 1/therm to 1/ccf', () => {
+      const result = convert(25).from('1/therm').to('1/ccf');
+      expect(result).toBeCloseTo(25);
+    });
 
-  // test('20 1/GJ to 1/kWh', () => {
-  //   const result = convert(20).from('1/GJ').to('1/kWh');
+    test('25 1/therm to 1/klb', () => {
+      const result = convert(25).from('1/therm').to('1/klb');
+      expect(result).toBeCloseTo(250);
+    });
 
-  //   expect(result).toBeCloseTo(0.072000024);
-  // });
+    test('25 1/ccf to 1/klb', () => {
+      const result = convert(25).from('1/ccf').to('1/klb');
+      expect(result).toBeCloseTo(250);
+    });
 
-  // test('0.072000024 1/kWh to 1/ton-hr', () => {
-  //   const result = convert(0.072000024).from('1/kWh').to('1/ton-hr');
+    test('11 1/MMBtu to 1/kWh', () => {
+      const result = convert(11).from('1/MMBtu').to('1/kWh');
+      expect(result).toBeCloseTo(0.037532);
+    });
 
-  //   expect(result).toBeCloseTo(0.253224084);
-  // });
+    test('11 1/kWh to 1/MMBtu', () => {
+      const result = convert(11).from('1/kWh').to('1/MMBtu');
+      expect(result).toBeCloseTo(3223.88);
+    });
 
-  // test('0.253224084 1/ton-hr to 1/therm', () => {
-  //   const result = convert(0.253224084).from('1/ton-hr').to('1/therm');
+    test('11 1/MMBtu to 1/GJ', () => {
+      const result = convert(11).from('1/MMBtu').to('1/GJ');
+      expect(result).toBeCloseTo(10.42555208);
+    });
 
-  //   expect(result).toBeCloseTo(2.110200703);
-  // });
+    test('20 1/GJ to 1/therm', () => {
+      const result = convert(20).from('1/GJ').to('1/therm');
+
+      expect(result).toBeCloseTo(2.1102);
+    });
+
+    test('11 1/tonne to 1/ccf', () => {
+      const result = convert(11).from('1/tonne').to('1/ccf');
+      expect(result).toBeCloseTo(0.498949);
+    });
+  });
+
+  // Identity conversions - same unit to same unit should preserve exact value
+  describe('Identity conversions', () => {
+    test('1/kWh to 1/kWh', () => {
+      const result = convert(42.5).from('1/kWh').to('1/kWh');
+      expect(result).toBe(42.5);
+    });
+
+    test('1/m3 to 1/m3', () => {
+      const result = convert(123.456).from('1/m3').to('1/m3');
+      expect(result).toBe(123.456);
+    });
+
+    test('1/GJ to 1/GJ', () => {
+      const result = convert(7.89).from('1/GJ').to('1/GJ');
+      expect(result).toBe(7.89);
+    });
+
+    test('1/tonne to 1/tonne', () => {
+      const result = convert(0.001).from('1/tonne').to('1/tonne');
+      expect(result).toBe(0.001);
+    });
+
+    test('1/MMBtu to 1/MMBtu', () => {
+      const result = convert(99.99).from('1/MMBtu').to('1/MMBtu');
+      expect(result).toBe(99.99);
+    });
+
+    test('1/ton-hr to 1/ton-hr', () => {
+      const result = convert(1000).from('1/ton-hr').to('1/ton-hr');
+      expect(result).toBe(1000);
+    });
+
+    test('1/therm to 1/therm', () => {
+      const result = convert(50.25).from('1/therm').to('1/therm');
+      expect(result).toBe(50.25);
+    });
+
+    test('1/ccf to 1/ccf', () => {
+      const result = convert(0.5).from('1/ccf').to('1/ccf');
+      expect(result).toBe(0.5);
+    });
+
+    test('1/klb to 1/klb', () => {
+      const result = convert(12.345).from('1/klb').to('1/klb');
+      expect(result).toBe(12.345);
+    });
+  });
 });

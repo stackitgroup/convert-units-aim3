@@ -25,21 +25,21 @@ const metric: Record<OneOverEnergyMetricUnits, Unit> = {
       singular: 'One over Cubic Meter',
       plural: 'One over Cubic Meters',
     },
-    to_anchor: 29.308 * 2.8317, // 1/m3 → 1/therm (×2.8317) → 1/kWh (×29.308), so 1/m3 = 29.308 * 2.8317 * 1/kWh
+    to_anchor: 2.8317 * 0.03412,
   },
   '1/GJ': {
     name: {
       singular: 'One over Gigajoule',
       plural: 'One over Gigajoules',
     },
-    to_anchor: 1.0551 * 0.003412, // 1/GJ → 1/MMBtu (×1.0551) → 1/kWh (×293.08), so 1/GJ = 293.08 * 1.0551 * 1/kWh
+    to_anchor: 0.10551 * 0.03412,
   },
   '1/tonne': {
     name: {
       singular: 'One over Metric Tonne',
       plural: 'One over Metric Tonnes',
     },
-    to_anchor: 293.08 * 0.45359, // 1/tonne → 1/MMBtu (×0.45359) → 1/kWh (×293.08), so 1/tonne = 293.08 * 0.45359 * 1/kWh
+    to_anchor: 0.45359 * 0.003412,
   },
 };
 
@@ -56,28 +56,28 @@ const imperial: Record<OneOverEnergyImperialUnits, Unit> = {
       singular: 'One over Ton Hour',
       plural: 'One over Ton Hours',
     },
-    to_anchor: 1,
+    to_anchor: 0.28433 * 293.08,
   },
   '1/therm': {
     name: {
       singular: 'One over Therm',
       plural: 'One over Therms',
     },
-    to_anchor: (1 / 0.012) * 0.1,
+    to_anchor: 1 / 0.1,
   },
   '1/ccf': {
     name: {
       singular: 'One over Centum Cubic Feet',
       plural: 'One over Centum Cubic Feet',
     },
-    to_anchor: 1 * 0.1 * 0.012, // 1/ccf → 1/therm (×1) → 1/MMBtu (×0.1) → 1/ton-hr (×0.012)
+    to_anchor: 1 * (1 / 0.1),
   },
   '1/klb': {
     name: {
       singular: 'One over Kilo Pound',
       plural: 'One over Kilo Pounds',
     },
-    to_anchor: 1 * 0.012, // 1/klb → 1/MMBtu (×1) → 1/ton-hr (×0.012)
+    to_anchor: 1,
   },
 };
 
@@ -89,12 +89,12 @@ const measure: Measure<OneOverEnergySystems, OneOverEnergyUnits> = {
   anchors: {
     metric: {
       imperial: {
-        ratio: 3.517,
+        ratio: 293.08,
       },
     },
     imperial: {
       metric: {
-        ratio: 0.28433,
+        ratio: 0.003412,
       },
     },
   },
