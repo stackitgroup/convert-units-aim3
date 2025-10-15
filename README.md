@@ -894,6 +894,7 @@ Packaged Units
 * kWh
 * ton-hr
 * MMBtu
+* kBtu
 * Therms
 </details>
 
