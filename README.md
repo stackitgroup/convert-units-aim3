@@ -896,6 +896,7 @@ Packaged Units
 * MMBtu
 * kBtu
 * Therms
+* klb
 </details>
 
 
