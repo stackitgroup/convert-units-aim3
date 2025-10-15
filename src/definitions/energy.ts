@@ -3,7 +3,12 @@ export type EnergyUnits = EnergyMetricUnits | EnergyImperialUnits;
 export type EnergySystems = 'metric' | 'imperial';
 
 export type EnergyMetricUnits = 'kWh';
-export type EnergyImperialUnits = 'MMBtu' | 'kBtu' | 'Therms' | 'Ton-hours';
+export type EnergyImperialUnits =
+  | 'MMBtu'
+  | 'kBtu'
+  | 'Therms'
+  | 'Ton-hours'
+  | 'klb';
 
 const metric: Record<EnergyMetricUnits, Unit> = {
   kWh: {
@@ -43,6 +48,13 @@ const imperial: Record<EnergyImperialUnits, Unit> = {
       plural: 'Ton-hours',
     },
     to_anchor: 0.012,
+  },
+  klb: {
+    name: {
+      singular: 'Thousand pounds of steam',
+      plural: 'Thousand pounds of steam',
+    },
+    to_anchor: 1,
   },
 };
 

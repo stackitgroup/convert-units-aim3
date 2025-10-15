@@ -48,7 +48,7 @@ test('energy possibilities', () => {
     energy,
   });
   const actual = convert().possibilities('energy'),
-    expected = ['kWh', 'MMBtu', 'Therms', 'Ton-hours', 'kBtu'];
+    expected = ['kWh', 'MMBtu', 'Therms', 'Ton-hours', 'kBtu', 'klb'];
   expect(actual.sort()).toEqual(expected.sort());
 });
 
@@ -93,6 +93,7 @@ test('all possibilities', () => {
       'kWh',
       'kWh/ft2',
       'kWh/m2',
+      'klb',
       'l/s',
       'm',
       'm/s',
