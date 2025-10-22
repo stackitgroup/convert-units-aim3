@@ -86,6 +86,7 @@ test('all possibilities', () => {
       'ft',
       'ft/min',
       'ft2',
+      'gal',
       'hp/1000cfm',
       'in. w.c',
       'kBtu/ft2',
@@ -98,6 +99,7 @@ test('all possibilities', () => {
       'm',
       'm/s',
       'm2',
+      'm3',
     ];
   expect(actual.sort()).toEqual(expected.sort());
 });

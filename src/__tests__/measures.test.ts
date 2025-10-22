@@ -17,6 +17,7 @@ test('measures', () => {
       'energyConsumptionPerArea',
       'heatingCoolingDegreeDays',
       'ventilationRate',
+      'volume',
       'energy',
       'length',
       'oneOverEnergy',

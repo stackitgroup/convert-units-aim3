@@ -28,6 +28,7 @@ import ventilationRate, {
   VentilationRateSystems,
   VentilationRateUnits,
 } from './ventilationRate.js';
+import volume, { VolumeSystems, VolumeUnits } from './volume.js';
 import volumeFlowRate, {
   VolumeFlowRateSystems,
   VolumeFlowRateUnits,
@@ -35,6 +36,7 @@ import volumeFlowRate, {
 
 export type AllMeasuresSystems =
   | AreaSystems
+  | VolumeSystems
   | VentilationRateSystems
   | EnergyConsumptionPerAreaSystems
   | HeatingCoolingDegreeDaysSystems
@@ -49,6 +51,7 @@ export type AllMeasuresSystems =
 
 export type AllMeasuresUnits =
   | AreaUnits
+  | VolumeUnits
   | VentilationRateUnits
   | EnergyConsumptionPerAreaUnits
   | HeatingCoolingDegreeDaysUnits
@@ -63,6 +66,7 @@ export type AllMeasuresUnits =
 
 export type AllMeasures =
   | 'area'
+  | 'volume'
   | 'ventilationRate'
   | 'energyConsumptionPerArea'
   | 'heatingCoolingDegreeDays'
@@ -80,6 +84,7 @@ const allMeasures: Record<
   Measure<AllMeasuresSystems, AllMeasuresUnits>
 > = {
   area,
+  volume,
   ventilationRate,
   energyConsumptionPerArea,
   heatingCoolingDegreeDays,
