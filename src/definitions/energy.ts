@@ -47,7 +47,7 @@ const imperial: Record<EnergyImperialUnits, Unit> = {
       singular: 'Ton-hour',
       plural: 'Ton-hours',
     },
-    to_anchor: 0.012,
+    to_anchor: 3.517 * 0.003412,
   },
   klb: {
     name: {

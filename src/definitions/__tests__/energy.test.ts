@@ -109,4 +109,22 @@ describe('Energy conversions', () => {
   test('200 Ton-hours to Therms', () => {
     expect(convert(200).from('Ton-hours').to('Therms')).toBeCloseTo(24, 1);
   });
+
+  test('290000 Ton-hours to kWh', () => {
+    expect(convert(290_000).from('Ton-hours').to('kWh')).toBeCloseTo(
+      1019918.7399728
+    );
+  });
+
+  test('3480.00116 MMBtu to kWh', () => {
+    expect(convert(3480.00116).from('MMBtu').to('kWh')).toBeCloseTo(
+      1019918.7399728
+    );
+  });
+
+  test('290000 Ton-hours to MMBtu', () => {
+    expect(convert(290_000).from('Ton-hours').to('MMBtu')).toBeCloseTo(
+      3480.00116
+    );
+  });
 });

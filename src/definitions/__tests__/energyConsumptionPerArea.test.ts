@@ -16,6 +16,18 @@ test('10 kWh/ft2 to kBtu/ft2', () => {
   expect(convert(10).from('kWh/ft2').to('kBtu/ft2')).toBeCloseTo(34.12);
 });
 
+test('206.4 kBtu/ft2 to kWh/m2', () => {
+  const convert = configureMeasurements<
+    'energyConsumptionPerArea',
+    EnergyConsumptionPerAreaSystems,
+    EnergyConsumptionPerAreaUnits
+  >({
+    energyConsumptionPerArea,
+  });
+
+  expect(convert(206.4).from('kBtu/ft2').to('kWh/m2')).toBeCloseTo(651.13008);
+});
+
 test('18 kBtu/ft2 to kWh/ft2', () => {
   const convert = configureMeasurements<
     'energyConsumptionPerArea',
