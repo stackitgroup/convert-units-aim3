@@ -852,6 +852,12 @@ Packaged Units
 </details>
 
 <details>
+<summary>Temperature</summary>
+* degF
+* degC
+</details>
+
+<details>
 <summary>Energy Consumption per Area</summary>
 * kBtu/ft2
 * kWh/ft2
