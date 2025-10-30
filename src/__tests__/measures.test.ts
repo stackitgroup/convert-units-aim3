@@ -25,6 +25,7 @@ test('measures', () => {
       'powerDensity',
       'pressure',
       'speed',
+      'temperature',
       'volumeFlowRate',
     ];
   expect(actual.sort()).toEqual(expected.sort());

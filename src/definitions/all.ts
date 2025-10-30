@@ -24,6 +24,10 @@ import specificPowerConsumption, {
   SpecificPowerConsumptionUnits,
 } from './specificPowerConsumption.js';
 import speed, { SpeedSystems, SpeedUnits } from './speed.js';
+import temperature, {
+  TemperatureSystems,
+  TemperatureUnits,
+} from './temperature.js';
 import ventilationRate, {
   VentilationRateSystems,
   VentilationRateUnits,
@@ -47,7 +51,8 @@ export type AllMeasuresSystems =
   | PowerDensitySystems
   | PressureSystems
   | SpeedSystems
-  | VolumeFlowRateSystems;
+  | VolumeFlowRateSystems
+  | TemperatureSystems;
 
 export type AllMeasuresUnits =
   | AreaUnits
@@ -62,7 +67,8 @@ export type AllMeasuresUnits =
   | PowerDensityUnits
   | PressureUnits
   | SpeedUnits
-  | VolumeFlowRateUnits;
+  | VolumeFlowRateUnits
+  | TemperatureUnits;
 
 export type AllMeasures =
   | 'area'
@@ -77,7 +83,8 @@ export type AllMeasures =
   | 'powerDensity'
   | 'pressure'
   | 'speed'
-  | 'volumeFlowRate';
+  | 'volumeFlowRate'
+  | 'temperature';
 
 const allMeasures: Record<
   AllMeasures,
@@ -96,6 +103,7 @@ const allMeasures: Record<
   pressure,
   speed,
   volumeFlowRate,
+  temperature,
 };
 
 export default allMeasures;
